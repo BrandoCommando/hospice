@@ -82,7 +82,7 @@
 				{/foreach}
 			</select>
 		</div>
-		<div class="col-md-2 col-xs-5 form-group">
+		<div class="col-md-4 col-xs-5 form-group">
 			<label for="patient_birthdate">Date of Birth</label>
 			<input type="date" id="patient_birthdate" name="patient[birthdate]" class="form-control" value="{$patient.birthdate}" />
 		</div>
@@ -90,8 +90,6 @@
 			<label>Age</label>
 			<input id="patient_age" class="form-control disabled"{if $patient.birthdate|default:'' ne ""} value="{math equation='floor((n-b)/31536000)' n=$smarty.now b=$patient.birthdate|strtotime}"{/if} />
 		</div>
-	</div>
-	<div class="row">
 		<div class="col-md-5 col-xs-6 form-group">
 			<label for="patient_ssn">SSN</label>
 			<input type="text" name="patient[ssn]" id="patient_ssn" class="form-control" value="{$patient.ssn}" />
