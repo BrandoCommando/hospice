@@ -17,7 +17,7 @@
 		</button>
 	</div>
 	<div class="form-group">
-	<select id="patient_select" class="form-control" name="id" size="10">
+	<select id="patient_select" class="form-control" name="id" size="10" onchange="this.form.submit()">
 	{if $patients|default:"" ne ""}
 	{foreach from=$patients item=p}
 	<option value="{$p.id}">{$p.mr_num}  {$p.last_name}, {$p.first_name}</option>

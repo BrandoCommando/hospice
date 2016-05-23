@@ -8,172 +8,172 @@
 		</div>
 		<div class="col-md-1 col-xs-3 form-group">
 			<label>CTI
-				<input type="checkbox" class="checkbox form-control" name="patient[cti]" id="patient_cti" value="1" />
+				<input type="checkbox" class="checkbox form-control" name="patient[cti]" id="patient_cti" value="1"{if $patient.cti eq "1"} checked="checked"{/if} />
 			</label>
 		</div>
 		<div class="col-md-1 col-xs-3 form-group">
 			<label>NOE
-				<input type="checkbox" class="checkbox form-control" name="patient[noe]" id="patient_noe" value="1" />
+				<input type="checkbox" class="checkbox form-control" name="patient[noe]" id="patient_noe" value="1"{if $patient.noe eq "1"} checked="checked"{/if} />
 			</label>
 		</div>
 		<div class="col-md-1 col-xs-3 form-group">
 			<label>81A
-				<input type="checkbox" class="checkbox form-control" name="patient[81a]" id="patient_81a" value="1" />
+				<input type="checkbox" class="checkbox form-control" name="patient[81a]" id="patient_81a" value="1"{if $patient.81a eq "1"} checked="checked"{/if} />
 			</label>
 		</div>
 		<div class="col-md-1 col-xs-3 form-group">
 			<label>81B
-				<input type="checkbox" class="checkbox form-control" name="patient[81b]" id="patient_81b" value="1" />
+				<input type="checkbox" class="checkbox form-control" name="patient[81b]" id="patient_81b" value="1"{if $patient.81b eq "1"} checked="checked"{/if} />
 			</label>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-4 form-group">
 			<label for="patient_admit_type">Admit Type</label>
 			<select name="patient[admit_type]" id="patient_admit_type" class="form-control">
 			<option></option>
-			<option>New Admit</option>
-			<option>Re-Admit</option>
-			<option>Transfer</option>
+			{foreach from=$lists.admit_type item=val key=i}
+			<option{if $patient.admit_type eq $val} selected{/if}>{$val}</option>
+			{/foreach}
 			</select>
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-4 form-group">
 			<label for="patient_soc">SOC</label>
-			<input type="text" name="patient[soc]" id="patient_soc" class="form-control" />
+			<input type="text" name="patient[soc]" id="patient_soc" class="form-control" value="{$patient.soc}" placeholder="SOC" />
 		</div>
-		<div class="col-md-3 form-group">
+		<div class="col-md-3 col-xs-4 form-group">
 			<label for="patient_status">Status</label>
 			<select id="patient_status" name="patient[status]" class="form-control">
-			<option></option>
-			<option>Pending</option>
-			<option>Active</option>
+			{foreach from=$lists.status item=val key=i}
+			<option{if $patient.status eq $val} selected{/if}>{$val}</option>
+			{/foreach}
 			</select>
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="patient_discharge_date">Discharge Date</label>
-			<input type="text" name="patient[discharge_date]" class="form-control" />
+			<input type="text" name="patient[discharge_date]" class="form-control" value="{$patient.discharged|date_format:'%D'}" />
 		</div>
-		<div class="col-md-2">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="patient_discharge_time">Discharge Time</label>
-			<input type="text" name="patient[discharge_time]" class="form-control" />
+			<input type="text" name="patient[discharge_time]" class="form-control" value="{$patient.discharged|date_format:'%T'}" />
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-5">
+		<div class="col-md-5 col-xs-5 form-group">
 			<label for="patient_first_name">First Name</label>
-			<input type="text" id="patient_first_name" name="patient[first_name]" class="form-control" />
+			<input type="text" id="patient_first_name" name="patient[first_name]" class="form-control" value="{$patient.first_name}" />
 		</div>
-		<div class="col-md-1 form-group">
+		<div class="col-md-1 col-xs-2 form-group">
 			<label for="patient_initial">M.I.</label>
-			<input type="text" id="patient_initial" name="patient[initial]" class="form-control" />
+			<input type="text" id="patient_middle_initial" name="patient[middle_initial]" class="form-control" value="{$patient.middle_initial}" />
 		</div>
-		<div class="col-md-6 form-group">
+		<div class="col-md-6 col-xs-5 form-group">
 			<label for="patient_last_name">Last Name</label>
-			<input type="text" id="patient_last_name" name="patient[last_name]" class="form-control" />
+			<input type="text" id="patient_last_name" name="patient[last_name]" class="form-control" value="{$patient.last_name}" />
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-3 form-group">
 			<label for="patient_sex">Sex</label>
 			<select name="patient[sex]" id="patient_sex" class="form-control">
 				<option></option>
-				<option>F</option>
-				<option>M</option>
+				{foreach from=$lists.sex item=val key=i}
+				<option{if $patient.sex eq $val} selected{/if}>{$val}</option>
+				{/foreach}
 			</select>
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-5 form-group">
 			<label for="patient_birthdate">Date of Birth</label>
-			<input type="date" id="patient_birthdate" name="patient[birthdate]" class="form-control" />
+			<input type="date" id="patient_birthdate" name="patient[birthdate]" class="form-control" value="{$patient.birthdate}" />
 		</div>
-		<div class="col-md-1 form-group">
-			<strong>Age</strong>
-			<input id="patient_age" class="form-control" />
+		<div class="col-md-1 col-xs-4 form-group">
+			<label>Age</label>
+			<input id="patient_age" class="form-control disabled"{if $patient.birthdate|default:'' ne ""} value="{math equation='floor((n-b)/31536000)' n=$smarty.now b=$patient.birthdate|strtotime}"{/if} />
 		</div>
-		<div class="col-md-5 form-group">
+	</div>
+	<div class="row">
+		<div class="col-md-5 col-xs-6 form-group">
 			<label for="patient_ssn">SSN</label>
-			<input type="text" name="patient[ssn]" id="patient_ssn" class="form-control" />
+			<input type="text" name="patient[ssn]" id="patient_ssn" class="form-control" value="{$patient.ssn}" />
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="patient_race">Race</label>
 			<select name="patient[race]" id="patient_race" class="form-control">
 			<option></option>
-			<option>White</option>
-			<option>Black</option>
-			<option>Native American</option>
-			<option>Asian / Pacific Islander</option>
-			<option>Other / Unknown</option>
+			{foreach from=$lists.race item=val key=i}
+			<option{if $patient.race eq $val} selected{/if}>{$val}</option>
+			{/foreach}
 			</select>
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="patient_religion">Religion</label>
-			<input type="text" name="patient[religion]" id="patient_religion" class="form-control" />
+			<input type="text" name="patient[religion]" id="patient_religion" class="form-control" value="{$patient.religion}" />
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="patient_language">Language</label>
-			<input type="text" name="patient[language]" id="patient_language" class="form-control" />
+			<input type="text" name="patient[language]" id="patient_language" class="form-control" value="{$patient.language}" />
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="patient_marital">Marital Status</label>
 			<select name="patient[marital]" id="patient_marital" class="form-control">
 			<option></option>
-			<option>Single</option>
-			<option>Married</option>
-			<option>Divorced</option>
-			<option>Widowed</option>
+			{foreach from=$lists.marital item=val key=i}
+			<option{if $patient.marital eq $val} selected{/if}>{$val}</option>
+			{/foreach}
 			</select>
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="patient_ethnicity">Ethnicity</label>
 			<select name="patient[ethnicity]" id="patient_ethnicity" class="form-control">
 			<option></option>
-			<option>Hispanic</option>
-			<option>Non-Hispanic</option>
-			<option>Unknown</option>
+			{foreach from=$lists.ethnicity item=val key=i}
+			<option{if $patient.ethnicity eq $val} selected{/if}>{$val}</option>
+			{/foreach}
 			</select>
 		</div>
-		<div class="col-md-3 form-group">
+		<div class="col-md-3 col-xs-6 form-group">
 			<label for="patient_phone">Phone</label>
-			<input type="phone" name="patient[phone]" id="patient_phone" class="form-control" />
+			<input type="phone" name="patient[phone]" id="patient_phone" class="form-control" value="{$patient.phone}" />
 		</div>
-		<div class="col-md-3 form-group">
+		<div class="col-md-3 col-xs-6 form-group">
 			<label for="patient_fax">Fax</label>
-			<input type="phone" name="patient[fax]" id="patient_fax" class="form-control" />
+			<input type="phone" name="patient[fax]" id="patient_fax" class="form-control" value="{$patient.fax}" />
 		</div>
-		<div class="col-md-3 form-group">
+		<div class="col-md-3 col-xs-6 form-group">
 			<label for="patient_cell">Cell</label>
-			<input type="phone" name="patient[cell]" id="patient_cell" class="form-control" />
+			<input type="phone" name="patient[cell]" id="patient_cell" class="form-control" value="{$patient.cell}" />
 		</div>
-		<div class="col-md-3 form-group">
+		<div class="col-md-3 col-xs-6 form-group">
 			<label for="patient_other_number">Other #</label>
-			<input type="phone" name="patient[other_number]" id="patient_other_number" class="form-control" />
+			<input type="phone" name="patient[other_number]" id="patient_other_number" class="form-control" value="{$patient.other_number}" />
 		</div>
-		<div class="col-md-7 form-group">
+		<div class="col-md-7 col-xs-12 form-group">
 			<label for="patient_address">Address</label>
-			<input type="text" name="patient[address]" id="patient_address" class="form-control" />
+			<input type="text" name="patient[address]" id="patient_address" class="form-control" value="{$patient.address}" />
 		</div>
-		<div class="col-md-3 form-group">
+		<div class="col-md-3 col-xs-4 form-group">
 			<label for="patient_gate">Gate Code</label>
-			<input type="text" name="patient[gate]" id="patient_gate" class="form-control" />
+			<input type="text" name="patient[gate_code]" id="patient_gate_code" class="form-control" value="{$patient.gate_code}" />
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-4 form-group">
 			<label for="patient_mileage">Mileage</label>
-			<input type="text" name="patient[mileage]" id="patient_mileage" class="form-control" />
+			<input type="text" name="patient[mileage]" id="patient_mileage" class="form-control" value="{$patient.mileage}" />
 		</div>
-		<div class="col-md-6 form-group">
+		<div class="col-md-6 col-xs-5 form-group">
 			<label for="patient_city">City</label>
-			<input type="text" name="patient[city]" id="patient_city" class="form-control" />
+			<input type="text" name="patient[city]" id="patient_city" class="form-control" value="{$patient.city}" />
 		</div>
-		<div class="col-md-1 form-group">
+		<div class="col-md-1 col-xs-3 form-group">
 			<label for="patient_state">State</label>
-			<input type="text" name="patient[state]" id="patient_state" class="form-control" maxlength="2" />
+			<input type="text" name="patient[state]" id="patient_state" class="form-control" maxlength="2" value="{$patient.state}" />
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-4 form-group">
 			<label for="patient_zip">Zip</label>
-			<input type="text" name="patient[zip]" id="patient_zip" class="form-control" />
+			<input type="text" name="patient[zip]" id="patient_zip" class="form-control" value="{$patient.zip}" />
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-5 form-group">
 			<label for="patient_county">County</label>
-			<input type="text" name="patient[county]" id="patient_county" class="form-control" />
+			<input type="text" name="patient[county]" id="patient_county" class="form-control" value="{$patient.county}" />
 		</div>
 	</div>
 </div>
@@ -186,14 +186,17 @@
 		<div class="col-md-3 col-xs-12 form-group">
 			<label for="location_location">Location</label>
 			<select name="location[location]" id="location_location" class="form-control">
-			<option>Home</option>
+			<option></option>
+			{foreach from=$lists.location item=val key=i}
+			<option{if $location.location eq $val} selected{/if}>{$val}</option>
+			{/foreach}
 			</select>
 		</div>
-		<div class="col-md-2 col-xs-12 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="location_start_date">Start Date</label>
 			<input type="text" class="form-control" name="location[start_date]" id="location_start_date" placeholder="Start Date" />
 		</div>
-		<div class="col-md-2 col-xs-12 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="location_end_date">End Date</label>
 			<input type="text" class="form-control" name="location[end_date]" id="location_end_date" placeholder="End Date" />
 		</div>
@@ -225,21 +228,21 @@
 <div class="panel-heading">Diagnosis</div>
 <div class="panel-body">
 	<div class="row">
-		<div class="col-md-9 col-xs-12 form-group">
+		<div class="col-md-9 col-xs-8 form-group">
 			<label for="diag10diag">ICD10 Hospice Diagnosis</label>
 			<input type="text" name="diagnosis[icd10][diagnosis]" id="diag10diag" class="form-control" />
 		</div>
-		<div class="col-md-3 col-xs-12 form-group">
+		<div class="col-md-3 col-xs-4 form-group">
 			<label for="diag10date">Date</label>
 			<input type="text" name="diagnosis[icd10][date]" id="diag10date" class="form-control" />
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-9 col-xs-12 form-group">
+		<div class="col-md-9 col-xs-8 form-group">
 			<label for="diag10diag">ICD9 Hospice Diagnosis</label>
 			<input type="text" name="diagnosis[icd9][diagnosis]" id="diag9diag" class="form-control" />
 		</div>
-		<div class="col-md-3 col-xs-12 form-group">
+		<div class="col-md-3 col-xs-4 form-group">
 			<label for="diag9date">Date</label>
 			<input type="text" name="diagnosis[icd9][date]" id="diag9date" class="form-control" />
 		</div>
@@ -249,104 +252,93 @@
 <div class="panel panel-default">
 <div class="panel-heading">Physician</div>
 <div class="panel-body">
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Role</th>
-				<th>Name</th>
-				<th>Phone</th>
-				<th>NPI</th>
-				<th>Notify</th>
-				<th>Delete</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>
-				<select name="physician[0][role]" class="form-control">
-					<option>Attending</option>
-					<option>Secondary</option>
-				</select>
-				</td>
-				<td>
-				<input type="text" name="physician[0][name]" class="form-control" id="physician0_name" />
-				</td>
-				<td>
-				<input type="text" class="form-control disabled" id="physician0_phone" />
-				</td>
-				<td>
-				<input type="text" class="form-control disabled" id="physician0_npi" />
-				</td>
-				<td>
-				<input type="checkbox" class="form-control" name="physician[0][notify]" value="1" />
-				</td>
-				<td>
-				<input type="checkbox" class="form-control" name="physician[0][delete]" value="1" />
-				</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="row">
+		<div class="col-md-2 col-xs-6 form-group">
+			<label for="physician0_role">Role</label>
+			<select name="physician[0][role]" class="form-control">
+				<option></option>
+				{foreach from=$lists.physician_role item=val key=i}
+				<option{if $physician.role eq $val} selected{/if}>{$val}</option>
+				{/foreach}
+			</select>
+		</div>
+		<div class="col-md-3 col-xs-6 form-group">
+			<label for="physician0_name">Name</label>
+			<input type="text" name="physician[0][name]" class="form-control" id="physician0_name" />
+		</div>
+		<div class="col-md-3 col-xs-5 form-group">
+			<label for="physician0_phone">Phone</label>
+			<input type="text" class="form-control disabled" id="physician0_phone" />
+		</div>
+		<div class="col-md-3 col-xs-5 form-group">
+			<label for="physician0_npi">NPI</label>
+			<input type="text" class="form-control disabled" id="physician0_npi" />
+		</div>
+		<div class="col-md-1 col-xs-2 form-group">
+			<label>Notify
+				<input type="checkbox" class="form-control" id="physician0_notify" name="physician[0][notify]" value="1" />
+			</label>
+		</div>
+	</div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">Insurance</div>
 <div class="panel-body">
-	<table class="table">
-		<thead>
-		<tr><th>Company</th>
-			<th>Number</th>
-			<th>Role</th>
-			<th>Note</th>
-			<th>Delete</th>
-			</tr>
-		</thead>
-		<tbody>
-		<tr><td><select id="insurance0_company" name="insurance[0][company]" class="form-control">
-			<option>Anthem Blue Cross</option>
-			<option>Blue Cross</option>
-			<option>Blue Shield</option>
-			<option>Medi-Cal</option>
-			<option>Medicare</option>
-			<option>Private Insurance</option>
+	<div class="row">
+	<div class="col-md-3 form-group">
+	<label for="insurance0_company">Company</label>
+	<select id="insurance0_company" name="insurance[0][company]" class="form-control">
+			<option></option>
+			{foreach from=$lists.insurance_company item=val key=i}
+			<option{if $insurance.company eq $val} selected{/if}>{$val}</option>
+			{/foreach}
 			</select>
-			</td>
-			<td><input type="text" id="insurance0_number" name="insurance[0][number]" class="form-control" /></td>
-			<td><select class="form-control" name="insurance[0][role]" id="insurance0_role">
-				<option>Primary</option>
-				<option>Secondary</option>
-				<option>Inactive</option>
-				</select></td>
-			<td><input type="text" name="insurance[0][note]" id="insurance0_note" class="form-control" /></td>
-			<td><input type="checkbox" id="insurance0_delete" name="insurance[0][delete]" class="form-control" /></td>
-		</tr>
-		</tbody>
-	</table>
+	</div>
+	<div class="col-md-4 form-group">
+		<label for="insurance0_number">Number</label>
+		<input type="text" id="insurance0_number" name="insurance[0][number]" class="form-control" />
+	</div>
+	<div class="col-md-2 form-group">
+		<label for="insurance0_role">Role</label>
+		<select class="form-control" name="insurance[0][role]" id="insurance0_role">
+			<option></option>
+			{foreach from=$lists.insurance_role item=val key=i}
+			<option{if $insurance.role eq $val} selected{/if}>{$val}</option>
+			{/foreach}
+		</select>
+	</div>
+	<div class="col-md-3 form-group">
+		<label for="insurance0_note">Note</label>
+		<input type="text" name="insurance[0][note]" id="insurance0_note" class="form-control" />
+	</div>
+	</div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">Certifications</div>
 <div class="panel-body">
 	<div class="row">
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="cert0_number">Cert #</label>
 			<select name="cert[0][number]" id="cert0_number" class="form-control">
 			<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
 			</select>
 		</div>
-		<div class="col-md-3 form-group">
+		<div class="col-md-3 col-xs-6 form-group">
 			<label for="cert0_type">Type</label>
 			<select name="cert[0][type]" id="cert0_type" class="form-control">
-			<option>Medicare</option>
-			<option>Medi-Cal</option>
-			<option>Private</option>
-			<option>Other</option>
+			<option></option>
+			{foreach from=$lists.certification_type item=val key=i}
+			<option{if $certification.type eq $val} selected{/if}>{$val}</option>
+			{/foreach}
 			</select>
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="cert0_start">Start</label>
 			<input type="text" class="form-control date" name="cert[0][start_date]" id="cert0_start" />
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-6 form-group">
 			<label for="cert0_end">End</label>
 			<input type="text" class="form-control date" name="cert[0][end_date]" id="cert0_end" />
 		</div>
@@ -354,27 +346,27 @@
 			<label for="cert0_signed">Signed</label>
 			<input type="text" class="form-control date" name="cert[0][signed]" id="cert0_signed" />
 		</div>
-		<div class="col-md-5 form-group">
+		<div class="col-md-4 form-group">
 			<label for="cert0_physician1">Physician</label>
 			<select name="cert[0][physician][0]" id="cert0_physician1" class="form-control">
 			<option>Someone</option>
 			</select>
 		</div>
-		<div class="col-md-5 form-group">
+		<div class="col-md-4 form-group">
 			<label for="cert0_physician2">Physician</label>
 			<select name="cert[0][physician][1]" id="cert0_physician2" class="form-control">
 			<option>Someone Else</option>
 			</select>
 		</div>
-		<div class="col-md-2 form-group">
+		<div class="col-md-2 col-xs-4 form-group">
 			<label for="cert0_transfer">
-				<input type="checkbox" name="cert[0][transfer]" value="1" />
+				<input type="checkbox" class="form-control" name="cert[0][transfer]" value="1" />
 				Transfer In
 			</label>
 		</div>
-		<div class="col-md-1 form-group">
+		<div class="col-md-2 col-xs-4 form-group">
 			<label for="cert0_f2f">
-				<input type="checkbox" name="cert[0][f2f]" value="1" />
+				<input type="checkbox" class="form-control" name="cert[0][f2f]" value="1" />
 				F2F
 			</label>
 		</div>

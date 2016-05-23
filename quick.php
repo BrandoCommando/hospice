@@ -2,7 +2,7 @@
 define('IN_PHP',1);
 require('config.php');
 
-$tables = array('location','diagnosis','physician','insurance','cartification');
+$tables = array('location','diagnosis','physician','insurance','certification');
 if(!empty($_GET['id'])&&is_numeric($_GET['id']))
 {
 	$demo_id = $_GET['id'];
