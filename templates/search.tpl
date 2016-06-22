@@ -12,7 +12,7 @@
 		</div>
 	</div>
 	<div class="btn-group form-group" role="group">
-		<button type="button" class="btn btn-default">
+		<button type="button" class="btn btn-default" onclick="window.location='quick.php'">
 			Add New
 		</button>
 	</div>

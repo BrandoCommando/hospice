@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" id="quick_info">
 	<table class="table">
 		<thead>
 			<tr>
@@ -12,7 +12,9 @@
 		<tbody>
 			<tr>
 			<td>
-				{$patient.last_name}, {$patient.first_name}
+				{if !$patient}&nbsp;{else}
+				{$patient.last_name}{if $patient.first_name}, {$patient.first_name}{/if}
+				{/if}
 			</td>
 			<td>
 				{$patient.birthdate}
@@ -39,11 +41,13 @@
 		<tbody>
 			<tr>
 			<td>
+			{if !$patient.diagnosis}&nbsp;{else}
 			{foreach from=$diagnosis item=diag}
 			{if $diag.source eq "ICD9 PRIMARY"}
 			{$diag.diagnosis}<br>
 			{/if}
 			{/foreach}
+			{/if}
 			</td>
 			<td>
 			{foreach from=$diagnosis item=diag}

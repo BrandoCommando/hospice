@@ -1,10 +1,17 @@
+<form method="post" id="frmPatient">
+{if $patient.id ne ""}
+<input type="hidden" name="action" value="update" />
+<input type="hidden" name="patient_id" value="{$patient.id}" />
+{else}
+<input type="hidden" name="action" value="add" />
+{/if}
 <div class="panel panel-primary">
 <div class="panel-heading">Demographics</div>
-<div class="panel-body">
+<div class="panel-body" id="demo_body">
 	<div class="row">
 		<div class="col-md-2 form-group">
 			<label for="patient_mr">MR #</label>
-			<input type="text" name="patient[mr_num]" id="patient_mr" class="form-control" />
+			<input type="text" name="patient[mr_num]" id="patient_mr" class="form-control" value="{$patient.mr_num}" />
 		</div>
 		<div class="col-md-1 col-xs-3 form-group">
 			<label>CTI
@@ -39,7 +46,7 @@
 		</div>
 		<div class="col-md-2 col-xs-4 form-group">
 			<label for="patient_soc">SOC</label>
-			<input type="text" name="patient[soc]" id="patient_soc" class="form-control" value="{$patient.soc}" placeholder="SOC" />
+			<input type="text" name="patient[soc]" id="patient_soc" class="form-control datepicker" value="{$patient.soc}" placeholder="SOC" />
 		</div>
 		<div class="col-md-3 col-xs-4 form-group">
 			<label for="patient_status">Status</label>
@@ -51,7 +58,7 @@
 		</div>
 		<div class="col-md-2 col-xs-6 form-group">
 			<label for="patient_discharge_date">Discharge Date</label>
-			<input type="text" name="patient[discharge_date]" class="form-control" value="{$patient.discharged|date_format:'%D'}" />
+			<input type="text" name="patient[discharge_date]" class="form-control datepicker" value="{$patient.discharged|date_format:'%D'}" />
 		</div>
 		<div class="col-md-2 col-xs-6 form-group">
 			<label for="patient_discharge_time">Discharge Time</label>
@@ -94,7 +101,7 @@
 			<label for="patient_ssn">SSN</label>
 			<input type="text" name="patient[ssn]" id="patient_ssn" class="form-control" value="{$patient.ssn}" />
 		</div>
-		<div class="col-md-2 col-xs-6 form-group">
+		<div class="col-md-3 col-xs-6 form-group">
 			<label for="patient_race">Race</label>
 			<select name="patient[race]" id="patient_race" class="form-control">
 			<option></option>
@@ -120,7 +127,7 @@
 			{/foreach}
 			</select>
 		</div>
-		<div class="col-md-2 col-xs-6 form-group">
+		<div class="col-md-3 col-xs-6 form-group">
 			<label for="patient_ethnicity">Ethnicity</label>
 			<select name="patient[ethnicity]" id="patient_ethnicity" class="form-control">
 			<option></option>
@@ -179,7 +186,7 @@
 
 <div class="panel panel-default">
 <div class="panel-heading">Location</div>
-<div class="panel-body">
+<div class="panel-body" id="location_body">
 	<div class="row">
 		<div class="col-md-3 col-xs-12 form-group">
 			<label for="location_location">Location</label>
@@ -224,36 +231,36 @@
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">Diagnosis</div>
-<div class="panel-body">
+<div class="panel-body" id="diagnosis_body">
 	<div class="row">
 		<div class="col-md-9 col-xs-8 form-group">
 			<label for="diag10diag">ICD10 Hospice Diagnosis</label>
-			<input type="text" name="diagnosis[icd10][diagnosis]" id="diag10diag" class="form-control" />
+			<input type="text" name="diagnosis[{$diagnosis.id}][diagnosis]" id="diag10diag" class="form-control"{if $diagnosis.ICD10_PRIMARY} value="{$diagnosis.ICD10_PRIMARY.diagnosis}"{/if} />
 		</div>
 		<div class="col-md-3 col-xs-4 form-group">
 			<label for="diag10date">Date</label>
-			<input type="text" name="diagnosis[icd10][date]" id="diag10date" class="form-control" />
+			<input type="text" name="diagnosis[{$diagnosis.id}][date]" id="diag10date" class="form-control"{if $diagnosis.ICD10_PRIMARY} value="{$diagnosis.ICD10_PRIMARY.date}"{/if} />
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-9 col-xs-8 form-group">
 			<label for="diag10diag">ICD9 Hospice Diagnosis</label>
-			<input type="text" name="diagnosis[icd9][diagnosis]" id="diag9diag" class="form-control" />
+			<input type="text" name="diagnosis[{$diagnosis.id}][diagnosis]" id="diag9diag" class="form-control"{if $diagnosis.ICD9_PRIMARY} value="{$diagnosis.ICD9_PRIMARY.diagnosis}"{/if} />
 		</div>
 		<div class="col-md-3 col-xs-4 form-group">
 			<label for="diag9date">Date</label>
-			<input type="text" name="diagnosis[icd9][date]" id="diag9date" class="form-control" />
+			<input type="text" name="diagnosis[{$diagnosis.id}][date]" id="diag9date" class="form-control"{if $diagnosis.ICD9_PRIMARY} value="{$diagnosis.ICD9_PRIMARY.date}"{/if} />
 		</div>
 	</div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">Physician</div>
-<div class="panel-body">
+<div class="panel-body" id="physician_body">
 	<div class="row">
 		<div class="col-md-2 col-xs-6 form-group">
 			<label for="physician0_role">Role</label>
-			<select name="physician[0][role]" class="form-control">
+			<select name="physician[0][role]" id="physician0_role" class="form-control">
 				<option></option>
 				{foreach from=$lists.physician_role item=val key=i}
 				<option{if $physician.role eq $val} selected{/if}>{$val}</option>
@@ -262,19 +269,19 @@
 		</div>
 		<div class="col-md-3 col-xs-6 form-group">
 			<label for="physician0_name">Name</label>
-			<input type="text" name="physician[0][name]" class="form-control" id="physician0_name" />
+			<input type="text" name="physician[0][name]" class="form-control" id="physician0_name" value="{$physician.name}" />
 		</div>
 		<div class="col-md-3 col-xs-5 form-group">
 			<label for="physician0_phone">Phone</label>
-			<input type="text" class="form-control disabled" id="physician0_phone" />
+			<input type="text" class="form-control disabled" id="physician0_phone" value="{$physician.phone}" />
 		</div>
 		<div class="col-md-3 col-xs-5 form-group">
 			<label for="physician0_npi">NPI</label>
-			<input type="text" class="form-control disabled" id="physician0_npi" />
+			<input type="text" class="form-control disabled" id="physician0_npi" value="{$physician.npi}" />
 		</div>
 		<div class="col-md-1 col-xs-2 form-group">
 			<label>Notify
-				<input type="checkbox" class="form-control" id="physician0_notify" name="physician[0][notify]" value="1" />
+				<input type="checkbox" class="form-control" id="physician0_notify" name="physician[notify]" value="1" {if $physician.notify eq '1'} checked="checked"{/if} />
 			</label>
 		</div>
 	</div>
@@ -282,11 +289,11 @@
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">Insurance</div>
-<div class="panel-body">
+<div class="panel-body" id="insurance_body">
 	<div class="row">
 	<div class="col-md-3 form-group">
 	<label for="insurance0_company">Company</label>
-	<select id="insurance0_company" name="insurance[0][company]" class="form-control">
+	<select id="insurance0_company" name="insurance[company]" class="form-control">
 			<option></option>
 			{foreach from=$lists.insurance_company item=val key=i}
 			<option{if $insurance.company eq $val} selected{/if}>{$val}</option>
@@ -295,11 +302,11 @@
 	</div>
 	<div class="col-md-4 form-group">
 		<label for="insurance0_number">Number</label>
-		<input type="text" id="insurance0_number" name="insurance[0][number]" class="form-control" />
+		<input type="text" id="insurance0_number" name="insurance[number]" class="form-control" value="{$insurance.number}" />
 	</div>
 	<div class="col-md-2 form-group">
 		<label for="insurance0_role">Role</label>
-		<select class="form-control" name="insurance[0][role]" id="insurance0_role">
+		<select class="form-control" name="insurance[role]" id="insurance0_role">
 			<option></option>
 			{foreach from=$lists.insurance_role item=val key=i}
 			<option{if $insurance.role eq $val} selected{/if}>{$val}</option>
@@ -308,24 +315,24 @@
 	</div>
 	<div class="col-md-3 form-group">
 		<label for="insurance0_note">Note</label>
-		<input type="text" name="insurance[0][note]" id="insurance0_note" class="form-control" />
+		<input type="text" name="insurance[note]" id="insurance0_note" class="form-control" value="{$insurance.note}" />
 	</div>
 	</div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">Certifications</div>
-<div class="panel-body">
+<div class="panel-body" id="cert_body">
 	<div class="row">
 		<div class="col-md-2 col-xs-6 form-group">
 			<label for="cert0_number">Cert #</label>
-			<select name="cert[0][number]" id="cert0_number" class="form-control">
+			<select name="certification[number]" id="cert0_number" class="form-control">
 			<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
 			</select>
 		</div>
 		<div class="col-md-3 col-xs-6 form-group">
 			<label for="cert0_type">Type</label>
-			<select name="cert[0][type]" id="cert0_type" class="form-control">
+			<select name="certification[type]" id="cert0_type" class="form-control">
 			<option></option>
 			{foreach from=$lists.certification_type item=val key=i}
 			<option{if $certification.type eq $val} selected{/if}>{$val}</option>
@@ -334,40 +341,38 @@
 		</div>
 		<div class="col-md-2 col-xs-6 form-group">
 			<label for="cert0_start">Start</label>
-			<input type="text" class="form-control date" name="cert[0][start_date]" id="cert0_start" />
+			<input type="text" class="form-control date" name="certification[start_date]" id="cert0_start" value="{$certification.start_date}" />
 		</div>
 		<div class="col-md-2 col-xs-6 form-group">
 			<label for="cert0_end">End</label>
-			<input type="text" class="form-control date" name="cert[0][end_date]" id="cert0_end" />
+			<input type="text" class="form-control date" name="certification[end_date]" id="cert0_end" value="{$certification.end_date}" />
 		</div>
 		<div class="col-md-3 form-group">
 			<label for="cert0_signed">Signed</label>
-			<input type="text" class="form-control date" name="cert[0][signed]" id="cert0_signed" />
+			<input type="text" class="form-control date" name="certification[signed]" id="cert0_signed" value="{$certification.signed}" />
 		</div>
 		<div class="col-md-4 form-group">
 			<label for="cert0_physician1">Physician</label>
-			<select name="cert[0][physician][0]" id="cert0_physician1" class="form-control">
-			<option>Someone</option>
-			</select>
+			<input type="text" class="form-control" name="certification[physician1]" id="cert0_physician1" value="{$certification.physician1}" />
 		</div>
 		<div class="col-md-4 form-group">
 			<label for="cert0_physician2">Physician</label>
-			<select name="cert[0][physician][1]" id="cert0_physician2" class="form-control">
-			<option>Someone Else</option>
-			</select>
+			<input type="text" class="form-control" name="certification[physician2]" id="cert0_physician2" value="{$certification.physician2}" />
 		</div>
 		<div class="col-md-2 col-xs-4 form-group">
 			<label for="cert0_transfer">
-				<input type="checkbox" class="form-control" name="cert[0][transfer]" value="1" />
+				<input type="checkbox" class="form-control" name="certification[transfer]" value="1"{if $certification.transfer eq '1'} checked="checked"{/if} />
 				Transfer In
 			</label>
 		</div>
 		<div class="col-md-2 col-xs-4 form-group">
 			<label for="cert0_f2f">
-				<input type="checkbox" class="form-control" name="cert[0][f2f]" value="1" />
+				<input type="checkbox" class="form-control" name="certification[f2f]" value="1"{if $certification.f2f eq '1'} checked="checked"{/if} />
 				F2F
 			</label>
 		</div>
 	</div>
 </div>
 </div>
+  <button type="submit" class="btn btn-default">{if $patient.id ne ""}Update{else}Submit{/if}</button>
+</form>
