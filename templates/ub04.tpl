@@ -1,14 +1,27 @@
 <style type="text/css">
+B { font-family: Arial, Helvetica, sans-serif; font-style: normal; font-weight: bold; }
 table { border-collapse: collapse; }
-table table { width: 100%; }
-.cTableBorder { border: 1px solid gray; width: 9.5in; }
-.cBorderRight { border-right: 1px solid gray; padding-left: 2px; }
-.cBorderTop { border-top: 1px solid gray; }
-.cBorderTopRight { border-top: 1px solid gray; border-right: 1px solid gray; padding-left: 2px; }
-* { font-size: 10px; }
+table table { max-width: 100%; }
+.cTableBorder { border: 1px solid black; }
+.cTableBorder td { font-family: verdana; font-size: 8px; }
+.cBorderRight { border-right: 1px solid black; }
+.cBorderTop { border-top: 1px solid black; }
+.cBorderTopRight { border-top: 1px solid gray; border-right: 1px solid black; }
+strong {
+	padding-left: 4px;
+}
+strong.strongNoPadd {
+	padding-left: 0px;
+}
+.cText {
+	height: 15px;
+	font-size: 10px;
+	border: 1px #FFAAAA solid;
+	padding: none;
+}
 </style>
 
-<table cellspacing="0" cellpadding="0" class="cTableBorder" id="Table92">
+<table cellspacing="0" cellpadding="0" class="cTableBorder" id="Table92" width="650">
 <tbody><tr>
 	<td>
 		<table width="650" cellspacing="0" cellpadding="0" id="Table93">
@@ -1876,7 +1889,7 @@ table table { width: 100%; }
 											<table width="126" cellspacing="0" cellpadding="0" id="Table176">
 												<tbody><tr height="11">
 													<td colspan="2" class="cBorderTopRight" style="background-color: #F5F5F5;">
-														&nbsp;c.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other Procedure
+														&nbsp;c.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Other&nbsp;Procedure
 													</td>
 												</tr>
 												<tr height="11">

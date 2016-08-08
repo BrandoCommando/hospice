@@ -1,4 +1,8 @@
+{if $main eq "ub04"}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+{else}
 <!DOCTYPE html>
+{/if}
 <html lang="en">
 <head>
 <title>{$title|default:"Hospice Helper"}</title>
