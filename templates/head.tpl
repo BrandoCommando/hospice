@@ -10,9 +10,12 @@
 <script type="text/javascript" src="assets/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/hospice.js"></script>
 </head>
-<body>
+<body class="{$main}">
 
     <div class="container">
 	
+	{if $main ne "ub04" && !$skip_nav}
 		{include file="nav.tpl"}
+		{/if}
+		
 		

@@ -1,4 +1,14 @@
-<table width="650" cellspacing="0" cellpadding="0" class="cTableBorder" id="Table92">
+<style type="text/css">
+table { border-collapse: collapse; }
+table table { width: 100%; }
+.cTableBorder { border: 1px solid gray; width: 9.5in; }
+.cBorderRight { border-right: 1px solid gray; padding-left: 2px; }
+.cBorderTop { border-top: 1px solid gray; }
+.cBorderTopRight { border-top: 1px solid gray; border-right: 1px solid gray; padding-left: 2px; }
+* { font-size: 10px; }
+</style>
+
+<table cellspacing="0" cellpadding="0" class="cTableBorder" id="Table92">
 <tbody><tr>
 	<td>
 		<table width="650" cellspacing="0" cellpadding="0" id="Table93">
@@ -10,7 +20,7 @@
 							<b>Billing Group</b>
 						</td>
 						<td nowrap="">
-							MILESTONE HOSPICE INC
+							{$billing.group}
 						</td>
 					</tr>
 					<tr>
@@ -18,7 +28,7 @@
 							<b>Billing Provider</b>
 						</td>
 						<td>
-							MILESTONE HOSPICE INC
+							{$billing.provoder}
 						</td>
 					</tr>
 					<tr>
@@ -26,7 +36,7 @@
 							<b>Address</b>
 						</td>
 						<td nowrap="">
-							1500 CRENSHAW BLVD
+							{$billing.address}
 						</td>
 					</tr>
 					<tr>
@@ -34,7 +44,7 @@
 							<b>City, State, Zip</b>
 						</td>
 						<td>
-							TORRANCECA905012400
+							{$billing.city}, {$billing.state}, {$billing.zip}
 						</td>
 					</tr>
 					<tr>
@@ -42,9 +52,7 @@
 							<b>Phone</b>
 						</td>
 						<td>
-							(805)
-								496 -
-							4033									
+							{$billing.phone}									
 						</td>
 					</tr>
 
@@ -53,7 +61,7 @@
 							<b>Billing Prov.PIN#</b>
 						</td>
 						<td>
-								
+							{$billing.pin}
 						</td>
 					</tr>
 				</tbody></table>
@@ -67,12 +75,12 @@
 						<b>Pay-To Group</b>
 					</td>
 					<td nowrap="">
-						
+						{$payto.group}
 					</td>
 				</tr>
 				<tr>
 					<td style="background-color: #EFEFEF;" nowrap="" class="cBorderRight">
-						Pay-To Provider
+						{$payto.provider}
 					</td>
 					<td>
 						
@@ -83,7 +91,7 @@
 						Address
 					</td>
 					<td nowrap="">
-						
+						{$payto.address}
 					</td>
 				</tr>
 				<tr>
@@ -91,7 +99,7 @@
 						City, State, Zip
 					</td>
 					<td>
-						
+						{$payto.city}, {$payto.state}, {$payto.zip}
 					</td>
 				</tr>
 				<tr>
@@ -99,9 +107,7 @@
 						Phone
 					</td>
 					<td>
-						()
-						  -
-						&nbsp;									
+						{$payto.phone}							
 					</td>
 				</tr>
 				<tr>
@@ -109,7 +115,7 @@
 						Pay-To Tax ID
 					</td>
 					<td>
-						&nbsp;
+						{$payto.taxid}
 					</td>
 				</tr>
 			</tbody></table>
@@ -126,7 +132,7 @@
 									3a. Pat. Cntl #
 								</td>
 								<td width="91" class="cBorderRight">
-									MI92642695D-K&nbsp;
+									{$patient.cntl}
 								</td>
 								<td width="90" style="background-color: #F5F5F5;">
 									4. Type of Bill
@@ -137,10 +143,10 @@
 									b. Med. Rec.#
 								</td>
 								<td width="91" class="cBorderTopRight" style="background-color: #EFEFEF;">
-									HERRERA-RC&nbsp;
+									{$patient.mr_num}
 								</td>
 								<td width="90" class="cBorderTop">
-									811&nbsp;
+									{$bill.type}
 								</td>
 							</tr>
 						</tbody></table>
@@ -179,14 +185,14 @@
 							</tr>
 							<tr>
 								<td width="100" class="cBorderTopRight" valign="top">
-									954759563&nbsp;
+									{$patient.tax_no}&nbsp;
 								</td>
 								<td width="100" class="cBorderTopRight" nowrap="">
-									3/1/2016
+									{$statement.from}
 									<br>
 								</td>
 								<td width="100" class="cBorderTopRight" nowrap="">
-									3/20/2016
+									{$statement.to}
 									<br>
 								</td>
 							</tr>
@@ -218,7 +224,7 @@
 						a.
 					</td>
 					<td width="150" class="cBorderTop">
-						&nbsp;ID 92642695D
+						&nbsp;ID {$patient.code}
 					</td>
 				</tr>
 				</tbody></table>						
@@ -228,9 +234,9 @@
 						b.
 					</td>
 					<td width="222" class="cBorderTop">
-						Last HERRERA
-						First DELIA
-						MI 
+						Last {$patient.last_name|@strtoupper}
+						First {$patient.first_name|@strtoupper}
+						MI {$patient.middle_initial}
 					</td>
 				</tr>
 				</tbody></table>						
@@ -249,7 +255,7 @@
 						a.
 					</td>
 					<td width="333" colspan="7">
-						Street: 14119 DOTY
+						Street: {$patient.address|@strtoupper}
 					</td>
 				</tr>
 				</tbody></table>						
@@ -259,19 +265,19 @@
 						b.
 					</td>
 					<td width="144" class="cBorderTopRight" nowrap="">
-						City: HAWTHORNE
+						City: {$patient.city|@strtoupper}
 					</td>
 					<td width="8" class="cBorderTopRight" style="background-color: #EFEFEF;">
 						c.
 					</td>
 					<td width="61" class="cBorderTopRight" nowrap="">
-						State: CA
+						State: {$patient.state}
 					</td>
 					<td width="8" class="cBorderTopRight" style="background-color: #EFEFEF;">
 						d.
 					</td>
 					<td width="70" class="cBorderTopRight" nowrap="">
-						Zip: 90250
+						Zip: {$patient.zip}
 					</td>
 					<td width="8" class="cBorderTopRight" style="background-color: #EFEFEF;">
 						e.
@@ -301,9 +307,9 @@
 						</tr>
 						<tr height="12">
 							<td class="cBorderTopRight" nowrap="" height="12" align="center">
-								10 /
-								31 /
-								1922
+								{$patient.birthdate|date_format:"%m"} /
+								{$patient.birthdate|date_format:"%e"} /
+								{$patient.birthdate|date_format:"%Y"}
 							</td>
 						</tr>
 					</tbody></table>
@@ -317,7 +323,7 @@
 						</tr>
 						<tr height="12">
 							<td class="cBorderTopRight" align="center">
-								F
+								{$patient.sex}
 							</td>
 						</tr>
 					</tbody></table>
@@ -345,18 +351,16 @@
 						</tr>
 						<tr height="12">
 							<td class="cBorderTopRight" align="center" nowrap="">
-								3 /
-								1 /
-								2016
+								{$patient.admission_date}
 							</td>
 							<td class="cBorderTopRight" align="center" nowrap="">
-								00&nbsp;
+								&nbsp;
 							</td>
 							<td class="cBorderTopRight" align="center" nowrap="">
-								3&nbsp;
+								{$patient.admission_type}&nbsp;
 							</td>
 							<td class="cBorderTopRight" align="center" nowrap="">
-								1&nbsp;
+								{$patient.admission_src}&nbsp;
 							</td>
 						</tr>
 					</tbody></table>
@@ -384,7 +388,7 @@
 						</tr>
 						<tr height="12">
 							<td class="cBorderTopRight" height="12" align="center">
-								30&nbsp;
+								{$patient.stat}&nbsp;
 							</td>
 						</tr>
 					</tbody></table>
@@ -810,7 +814,7 @@
 											First Name:
 										</td>
 										<td>
-											DELIA
+											{$patient.first_name|@strtoupper}
 										</td>
 									</tr>
 									<tr>
@@ -821,7 +825,7 @@
 											Middle Initial:
 										</td>
 										<td>
-											
+											{$patient.middle_initial}
 										</td>
 									</tr>
 									<tr>
@@ -832,7 +836,7 @@
 											Last Name:
 										</td>
 										<td>
-											HERRERA
+											{$patient.last_name|@strtoupper}
 										</td>
 										
 									</tr>
@@ -844,7 +848,7 @@
 											Street Address:
 										</td>
 										<td>
-											14119 DOTY
+											{$patient.address|@strtoupper}
 										</td>
 									</tr>
 									<tr>
@@ -855,9 +859,9 @@
 											City, State, Zip:
 										</td>
 										<td>
-											HAWTHORNE,&nbsp; 
-											CA&nbsp;
-											90250
+											{$patient.city|@strtoupper},&nbsp; 
+											{$patient.state}&nbsp;
+											{$patient.zip}
 										</td>
 									</tr>
 								</tbody></table>
@@ -1105,777 +1109,43 @@
 				</td>
 			</tr>
 					
-		
+		{foreach from=$service_entries item=row key=index}
 				
-			<tr style="background-color: #FFFFFF;">
+			<tr style="background-color: #{if $index % 2 eq 1}FFFFFF{else}EFEFEF{/if};">
 				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					1
+					{math equation="i+1" i=$index}
 				</td>
 				<td class="cBorderTopRight" align="left">
-					&nbsp;0651
+					&nbsp;{$row.rev_code}
 				</td>
 				<td class="cBorderTopRight" align="left">
-					&nbsp;
+					&nbsp;{$row.description}
 				</td>
 				<td class="cBorderTopRight">
-					&nbsp;HC
+					&nbsp;{$row.svc_qual}
 				</td>
 				<td class="cBorderTopRight" align="left">
-					&nbsp;Z7100						
+					&nbsp;{$row.hcpcs_code}					
 				</td>
 				<td class="cBorderTopRight" align="left">
-					&nbsp;4/1/2016&nbsp;4/20/2016
+					&nbsp;{$row.service_from}&nbsp;{$row.service_to}
 				</td>
 				<td class="cBorderTopRight" align="center">
-					20&nbsp;
+					{$row.service_units}&nbsp;
 				</td>
 				<td class="cBorderTopRight" align="right">
-					4,359.20&nbsp;
+					{$row.charges}&nbsp;
 				</td>
 				<td class="cBorderTopRight" align="right">
-					&nbsp;
+					{$row.noncov}&nbsp;
 				</td>
 				<td class="cBorderTop" align="left">
-					&nbsp;
+					&nbsp;{$row.ndc_code}
 				</td>
 			</tr>
 				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					2
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					3
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					4
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					5
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					6
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					7
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					8
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					9
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					10
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					11
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					12
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					13
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					14
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					15
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					16
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					17
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					18
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					19
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					20
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #FFFFFF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					21
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-		
-				
-			<tr style="background-color: #EFEFEF;">
-				<td width="14" align="center" class="cBorderTopRight" nowrap="">
-					22
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;						
-				</td>
-				<td class="cBorderTopRight" align="left">
-					&nbsp;&nbsp;&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="center">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTopRight" align="right">
-					&nbsp;
-				</td>
-				<td class="cBorderTop" align="left">
-					&nbsp;
-				</td>
-			</tr>
-				
-					
+		{/foreach}
+
 			
 			
 			<tr height="22">
@@ -1892,13 +1162,13 @@
 					&nbsp;
 				</td>
 				<td class="cBorderTopRight" align="right">
-					<i>TOTALS</i>&nbsp;<img src="ADAClaimFix/arrow.gif">
+					<i>TOTALS</i>&nbsp;<!-- <img src="ADAClaimFix/arrow.gif"> -->
 				</td>
 				<td class="cBorderTopRight" align="right">
-					4,359.20&nbsp;
+					{$total_charges}&nbsp;
 				</td>
 				<td class="cBorderTopRight" align="right">
-					0.00&nbsp;
+					{$total_noncov}0.00&nbsp;
 				</td>
 				<td class="cBorderTop" align="center">
 					&nbsp;
@@ -1929,7 +1199,7 @@
 												</tr>
 												<tr height="12">
 													<td class="cBorderTopRight">
-														&nbsp;A HEALTHNET
+														&nbsp;A {$payer.name}
 													</td>
 												</tr>
 												<tr height="12">
@@ -1953,7 +1223,7 @@
 												</tr>
 												<tr height="12">
 													<td class="cBorderTopRight" align="center">
-														95567&nbsp;
+														{$payer.code}&nbsp;
 													</td>
 												</tr>
 												<tr height="12">
@@ -1977,7 +1247,7 @@
 												</tr>
 												<tr height="12">
 													<td class="cBorderTopRight" align="center">
-														&nbsp;
+														{$payer.health_plan_id}&nbsp;
 													</td>
 												</tr>
 												<tr height="12">
@@ -2004,10 +1274,10 @@
 												</tr>
 												<tr height="12">
 													<td class="cBorderTopRight" align="center">
-														Y&nbsp;
+														{$payer.rel_info}&nbsp;
 													</td>
 													<td class="cBorderTopRight" align="center">
-														Y&nbsp;
+														{$payer.asg_ben}&nbsp;
 													</td>
 												</tr>
 												<tr height="12" style="background-color: #EFEFEF;">
@@ -2107,7 +1377,7 @@
 											<table width="61" cellspacing="0" cellpadding="0" id="Table144">
 												<tbody><tr height="12">
 													<td nowrap="" class="cBorderTopRight" style="background-color: #EFEFEF;">
-														&nbsp;1528043635
+														&nbsp;{$payer.npi}
 													</td>
 												</tr>
 												<tr height="12">
@@ -2151,9 +1421,9 @@
 						</tr>	
 						<tr height="12">
 							<td class="cBorderTopRight">
-								&nbsp;A DELIA		
+								&nbsp;A {$patient.first_name|@strtoupper}
 								&nbsp; 		
-								&nbsp;HERRERA 
+								&nbsp;{$patient.last_name|@strtoupper}
 							</td>
 						</tr>
 						<tr height="12">
@@ -2182,7 +1452,7 @@
 						</tr>	
 						<tr height="12">
 							<td class="cBorderTopRight" align="center">
-								18&nbsp;
+								{$patient.relation}&nbsp;
 							</td>
 						</tr>
 						<tr height="12">
@@ -2206,7 +1476,7 @@
 						</tr>	
 						<tr height="12">
 							<td class="cBorderTopRight" align="center">
-								92642695D&nbsp;
+								{$patient.code}&nbsp;
 							</td>
 						</tr>
 						<tr height="12">
@@ -2287,7 +1557,7 @@
 						</tr>	
 						<tr height="12">
 							<td class="cBorderTopRight">
-								&nbsp;A 
+								&nbsp;A {$treatment_auth}
 							</td>
 						</tr>
 						<tr height="12">
@@ -2368,7 +1638,7 @@
 				
 				<td class="cBorderTopRight" align="center" valign="top" width="79" nowrap="">
 					67 Primary Diag.<br>
-					Code: &nbsp;C539 
+					Code: &nbsp;{$patient.diagnosis.0.code}
 				</td>
 				<td class="cBorderTopRight" align="center" width="94">
 					Other Diag. Codes<br>
@@ -2709,10 +1979,10 @@
 									</tr>
 									<tr>
 										<td>
-											HEALTHNET&nbsp;<br>
-											NO STREET&nbsp;<br>
+											{$payer.name}&nbsp;<br>
+											{$payer.address}&nbsp;<br>
 											&nbsp;<br>
-											&nbsp;,&nbsp;
+											&nbsp;{$payer.city},&nbsp;{$payer.state} {$payer.zip}
 										</td>
 									</tr>
 								</tbody></table>
@@ -2821,7 +2091,7 @@
 											76 Attending
 										</td>
 										<td class="cBorderTopRight" width="185" align="left">
-											NPI:&nbsp;1487748364
+											NPI:&nbsp;{$physician.0.npi}
 										</td>
 										<td class="cBorderTopRight" width="25" style="background-color: #EFEFEF;" nowrap="">
 											Qual
@@ -2841,19 +2111,19 @@
 														Last
 													</td>
 													<td>
-														KEECH&nbsp;
+														{$physician.0.last_name}&nbsp;
 													</td>
 													<td>
 														First
 													</td>
 													<td>
-														RICHARD&nbsp;
+														{$physician.0.first_name}&nbsp;
 													</td>
 													<td>
 														MI
 													</td>
 													<td>
-														&nbsp;
+														{$physician.0.middle_initial}&nbsp;
 													</td>
 												</tr>
 											</tbody></table>
@@ -2870,7 +2140,7 @@
 											77 Operating
 										</td>
 										<td class="cBorderTopRight" width="185" align="left">
-											NPI:&nbsp;1528043635
+											NPI:&nbsp;{$physician.1.npi}
 										</td>
 										<td class="cBorderTopRight" width="25" style="background-color: #EFEFEF;" nowrap="">
 											Qual
@@ -2890,19 +2160,19 @@
 														Last
 													</td>
 													<td>
-														MILESTONE HOSPICE&nbsp;
+														{$physician.1.last_name}&nbsp;
 													</td>
 													<td>
 														First
 													</td>
 													<td>
-														&nbsp;
+														{$physician.1.first_name}&nbsp;
 													</td>
 													<td>
 														MI
 													</td>
 													<td>
-														&nbsp;
+														{$physician.1.middle_initial}&nbsp;
 													</td>
 												</tr>
 											</tbody></table>
